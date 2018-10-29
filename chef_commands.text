@@ -1,0 +1,43 @@
+cookbook Structure:-
+Attributes-- default.rb--- This is a chef attribute file.it can be used to specify and override attributes. we can specify name = value. its shold be works globally.
+Files--- This is chef cookbook file. itis used to copy content verbatain on to a server
+Recipes--default.rb---default.rb is one receipe---in recipe we have resources
+Templates--use a Ruby statement. When a template is rendered, Ruby expressions and statements are evaluated by the Chef Client.
+Metadata-- it contains chef version and cookbook versions.
+==============================================
+node1
+======
+knife bootstrap 18.218.157.158 --ssh-user ec2-user --sudo --identity-file viswa.pem --node-name chef
+
+knife ssh 'name:node1' 'sudo chef-client' --ssh-user ec2-user --identity-file aws.pem
+
+=====
+node2
+======
+
+knife bootstrap 18.188.169.115 --ssh-user ec2-user --sudo --identity-file aws.pem --node-name Devops   {  knife bootstrap 18.218.250.34 -x ec2-user -p ***** --node-name node2 }
+
+knife node run_list add node2 recipe[apache]
+
+knife ssh 'name:node2' 'sudo chef-client' --ssh-user ec2-user --identity-file aws.pem
+======
+node3
+======
+ knife bootstrap 18.216.53.191 --ssh-user ec2-user --sudo --identity-file viswa.pem --node-name Chef_Node ( by using this commandd you can connect the node into server)
+
+knife node run_list add node2 recipe[apache]
+
+knife ssh 'name:node3' 'sudo chef-client' --ssh-user ec2-user --identity-file aws.pem  (chef-client command you can run from the chef_workstation)
+
+=========
+chef_commands
+============
+chef generate cookbook <name of cookbook>
+
+knife cookbook test apache
+
+knife cookbook upload apache
+
+knife node run_list add node2 recipe[apache]
+
+Chef-client (To configure the node)
